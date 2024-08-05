@@ -7,11 +7,13 @@ import { Genre } from './hooks/useGenres';
 import PlatformSelected from './components/PlatformSelected';
 import { Platform } from './hooks/usePlatforms';
 
+export interface Property {
+  selectedGenre: Genre | null;
+  selectedPlatform: Platform | null;
+}
+
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null
-  );
+  const [selectedProperty, setSelectedProperty] = useState<Property>({} as Property);
   return (
     <Grid
       templateAreas={{
@@ -29,20 +31,27 @@ function App() {
       <Show above="md">
         <GridItem paddingX={2} area="aside">
           <GenreList
-            selectedGenre={selectedGenre}
-            onSelectedGenre={genre => setSelectedGenre(genre)}
+            selectedProperty={selectedProperty.selectedGenre}
+            onSelectedProperty={property =>
+              setSelectedProperty({
+                ...selectedProperty,
+                selectedGenre: property,
+              })
+            }
           />
         </GridItem>
       </Show>
       <GridItem area="main">
         <PlatformSelected
-          selectedPlatform={selectedPlatform}
-          onSelectPlatform={platform => setSelectedPlatform(platform)}
+          selectedProperty={selectedProperty.selectedPlatform}
+          onSelectedProperty={property =>
+            setSelectedProperty({
+              ...selectedProperty,
+              selectedPlatform: property,
+            })
+          }
         />
-        <GameGrid
-          selectedPlatform={selectedPlatform}
-          selectedGenre={selectedGenre}
-        />
+        <GameGrid selectedProperty={selectedProperty} />
       </GridItem>
     </Grid>
   );

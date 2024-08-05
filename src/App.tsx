@@ -12,6 +12,7 @@ export interface Property {
   selectedGenre: Genre | null;
   selectedPlatform: Platform | null;
   selectedSort: string;
+  searchText: string;
 }
 
 function App() {
@@ -30,7 +31,11 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar
+          onSearch={searchText =>
+            setSelectedProperty({ ...selectedProperty, searchText })
+          }
+        />
       </GridItem>
       <Show above="md">
         <GridItem paddingX={2} area="aside">

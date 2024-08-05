@@ -16,6 +16,7 @@ const useGames = (property: Property) =>
       genres: property.selectedGenre?.id,
       parent_platforms: property.selectedPlatform?.id,
       ordering: property.selectedSort,
+      search: property.searchText,
     },
   });
 

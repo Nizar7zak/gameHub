@@ -7,6 +7,7 @@ import { Genre } from './hooks/useGenres';
 import PlatformSelected from './components/PlatformSelected';
 import { Platform } from './hooks/usePlatforms';
 import SortSelector from './components/SortSelector';
+import GameHeading from './components/GameHeading';
 
 export interface Property {
   selectedGenre: Genre | null;
@@ -51,28 +52,31 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Flex paddingLeft={2.5} mb={5}>
-          <Box mr={5}>
-            <PlatformSelected
-              selectedPlatform={selectedProperty.selectedPlatform}
-              onSelectedPlatform={property =>
+        <Box pl={2.5}>
+          <GameHeading property={selectedProperty} />
+          <Flex mb={5}>
+            <Box mr={5}>
+              <PlatformSelected
+                selectedPlatform={selectedProperty.selectedPlatform}
+                onSelectedPlatform={property =>
+                  setSelectedProperty({
+                    ...selectedProperty,
+                    selectedPlatform: property,
+                  })
+                }
+              />
+            </Box>
+            <SortSelector
+              selectedSort={selectedProperty.selectedSort}
+              onSelectedSort={property =>
                 setSelectedProperty({
                   ...selectedProperty,
-                  selectedPlatform: property,
+                  selectedSort: property,
                 })
               }
             />
-          </Box>
-          <SortSelector
-            selectedSort={selectedProperty.selectedSort}
-            onSelectedSort={property =>
-              setSelectedProperty({
-                ...selectedProperty,
-                selectedSort: property,
-              })
-            }
-          />
-        </Flex>
+          </Flex>
+        </Box>
         <GameGrid selectedProperty={selectedProperty} />
       </GridItem>
     </Grid>

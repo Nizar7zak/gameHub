@@ -48,9 +48,7 @@ const GenreList = ({ selectedProperty, onSelectedProperty }: Props) => {
                 />
                 <Button
                   fontWeight={
-                    genre.id === selectedProperty?.id
-                      ? 'bold'
-                      : 'normal'
+                    genre.id === selectedProperty?.id ? 'bold' : 'normal'
                   }
                   onClick={() => onSelectedProperty(genre)}
                   variant="link"

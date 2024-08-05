@@ -2,10 +2,10 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { BsChevronBarDown } from 'react-icons/bs';
 
 interface Props {
-  selectedProperty: string;
-  onSelectedProperty: (property: string) => void;
+  selectedSort: string;
+  onSelectedSort: (property: string) => void;
 }
-const SortSelector = ({ selectedProperty, onSelectedProperty }: Props) => {
+const SortSelector = ({ selectedSort, onSelectedSort }: Props) => {
   const sortOrders = [
     { value: '', label: 'Relevance' },
     { value: '-added', label: 'Date added' },
@@ -16,7 +16,7 @@ const SortSelector = ({ selectedProperty, onSelectedProperty }: Props) => {
   ];
 
   const currentSortOrder = sortOrders.find(
-    order => order.value === selectedProperty
+    order => order.value === selectedSort
   );
   return (
     <Menu>
@@ -25,7 +25,7 @@ const SortSelector = ({ selectedProperty, onSelectedProperty }: Props) => {
       </MenuButton>
       <MenuList>
         {sortOrders.map((order, index) => (
-          <MenuItem key={index} onClick={() => onSelectedProperty(order.value)}>
+          <MenuItem key={index} onClick={() => onSelectedSort(order.value)}>
             {order.label}
           </MenuItem>
         ))}

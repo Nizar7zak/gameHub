@@ -35,8 +35,8 @@ function App() {
       <Show above="md">
         <GridItem paddingX={2} area="aside">
           <GenreList
-            selectedProperty={selectedProperty.selectedGenre}
-            onSelectedProperty={property =>
+            selectedGenre={selectedProperty.selectedGenre}
+            onSelectedGenre={property =>
               setSelectedProperty({
                 ...selectedProperty,
                 selectedGenre: property,
@@ -48,8 +48,8 @@ function App() {
       <GridItem area="main">
         <HStack spacing={5} paddingLeft={2.5} mb={5}>
           <PlatformSelected
-            selectedProperty={selectedProperty.selectedPlatform}
-            onSelectedProperty={property =>
+            selectedPlatform={selectedProperty.selectedPlatform}
+            onSelectedPlatform={property =>
               setSelectedProperty({
                 ...selectedProperty,
                 selectedPlatform: property,
@@ -57,8 +57,8 @@ function App() {
             }
           />
           <SortSelector
-            selectedProperty={selectedProperty.selectedSort}
-            onSelectedProperty={property =>
+            selectedSort={selectedProperty.selectedSort}
+            onSelectedSort={property =>
               setSelectedProperty({
                 ...selectedProperty,
                 selectedSort: property,

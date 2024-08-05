@@ -4,7 +4,7 @@ import usePlatform, { Platform } from '../hooks/usePlatforms';
 
 interface Props {
   onSelectPlatform: (platform: Platform | null) => void;
-  selectedPlatform: Platform;
+  selectedPlatform: Platform | null;
 }
 
 const PlatformSelected = ({ onSelectPlatform, selectedPlatform }: Props) => {

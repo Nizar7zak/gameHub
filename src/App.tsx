@@ -11,6 +11,7 @@ import SortSelector from './components/SortSelector';
 export interface Property {
   selectedGenre: Genre | null;
   selectedPlatform: Platform | null;
+  selectedSort: string;
 }
 
 function App() {
@@ -55,7 +56,15 @@ function App() {
               })
             }
           />
-          <SortSelector />
+          <SortSelector
+            selectedProperty={selectedProperty.selectedSort}
+            onSelectedProperty={property =>
+              setSelectedProperty({
+                ...selectedProperty,
+                selectedSort: property,
+              })
+            }
+          />
         </HStack>
         <GameGrid selectedProperty={selectedProperty} />
       </GridItem>

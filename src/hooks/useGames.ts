@@ -10,11 +10,12 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = ({ selectedGenre, selectedPlatform }: Property) =>
-  useData<Game>('/games', [selectedGenre?.id, selectedPlatform?.id], {
+const useGames = (property: Property) =>
+  useData<Game>('/games', [property], {
     params: {
-      genres: selectedGenre?.id,
-      parent_platforms: selectedPlatform?.id,
+      genres: property.selectedGenre?.id,
+      parent_platforms: property.selectedPlatform?.id,
+      ordering: property.selectedSort,
     },
   });
 

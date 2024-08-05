@@ -1,6 +1,6 @@
 import { Property } from '../App';
-import useData from './useData';
 import { Platform } from './usePlatforms';
+import useData from './useData';
 
 export interface Game {
   id: number;

@@ -16,25 +16,28 @@ const useData = <T>(
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const controller = new AbortController();
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const genres = await apiClient.get<FetchResponse<T>>(endpoint, {
-          signal: controller.signal,
-          ...requestConfig,
-        });
-        setData(genres.data.results);
-      } catch (error) {
-        if (error instanceof CanceledError) return;
-        setError((error as AxiosError).message);
-      }
-      setIsLoading(false);
-    };
-    fetchData();
-    return () => controller.abort();
-  }, deps ? [...deps]: []);
+  useEffect(
+    () => {
+      const controller = new AbortController();
+      const fetchData = async () => {
+        try {
+          setIsLoading(true);
+          const genres = await apiClient.get<FetchResponse<T>>(endpoint, {
+            signal: controller.signal,
+            ...requestConfig,
+          });
+          setData(genres.data.results);
+        } catch (error) {
+          if (error instanceof CanceledError) return;
+          setError((error as AxiosError).message);
+        }
+        setIsLoading(false);
+      };
+      fetchData();
+      return () => controller.abort();
+    },
+    deps ? [...deps] : []
+  );
 
   return { data, error, isLoading };
 };

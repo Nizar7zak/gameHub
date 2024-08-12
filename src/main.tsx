@@ -12,8 +12,8 @@ const rootElement = document.getElementById('root');
 ReactDOM.createRoot(rootElement as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <QueryClientProvider client={queryClient}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <App />
       </QueryClientProvider>
     </ChakraProvider>

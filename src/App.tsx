@@ -9,7 +9,7 @@ import GameHeading from './components/GameHeading';
 
 export interface Property {
   selectedGenreId?: number;
-  selectedPlatformId?: number ;
+  selectedPlatformId?: number;
   selectedSort: string;
   searchText: string;
 }

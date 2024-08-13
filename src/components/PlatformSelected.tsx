@@ -7,15 +7,20 @@ interface Props {
   onSelectedPlatformId: (id: number) => void;
 }
 
-const PlatformSelected = ({ selectedPlatformId, onSelectedPlatformId }: Props) => {
+const PlatformSelected = ({
+  selectedPlatformId,
+  onSelectedPlatformId,
+}: Props) => {
   const { data, error } = usePlatform();
   if (error) return null;
+
+  const getSelectedPlatformName = (platformId: number | undefined) =>
+    data?.results.find(platform => platform.id === platformId)?.name;
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronBarDown />}>
-        {/* {selectedPlatformId?.name || 'Platforms'} */}
-        Platforms
-
+        {getSelectedPlatformName(selectedPlatformId) || 'Platforms'}
       </MenuButton>
       <MenuList>
         {data?.results.map(platform => (

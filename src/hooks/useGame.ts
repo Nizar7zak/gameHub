@@ -19,8 +19,8 @@ const useGame = (selectedProperty: Property) =>
     queryFn: ({ pageParam = 1 }) =>
       gamesService.getAll({
         params: {
-          genres: selectedProperty.selectedGenre?.id,
-          parent_platforms: selectedProperty.selectedPlatform?.id,
+          genres: selectedProperty.selectedGenreId,
+          parent_platforms: selectedProperty.selectedPlatformId,
           ordering: selectedProperty.selectedSort,
           search: selectedProperty.searchText,
           page_size: 12,

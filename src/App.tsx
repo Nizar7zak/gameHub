@@ -3,81 +3,79 @@ import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import GenreList from './components/GenreList';
 import { useState } from 'react';
-import { Genre } from './hooks/useGenres';
 import PlatformSelected from './components/PlatformSelected';
-import { Platform } from './hooks/usePlatforms';
 import SortSelector from './components/SortSelector';
 import GameHeading from './components/GameHeading';
 
 export interface Property {
-  selectedGenre: Genre | null;
-  selectedPlatform: Platform | null;
+  selectedGenreId: number | undefined;
+  selectedPlatformId: number | undefined;
   selectedSort: string;
   searchText: string;
 }
 
 function App() {
-  const [selectedProperty, setSelectedProperty] = useState<Property>(
+  const [ selectedProperty, setSelectedProperty ] = useState<Property>(
     {} as Property
   );
   return (
     <Grid
-      templateAreas={{
+      templateAreas={ {
         base: `"nav" "main"`,
         md: `"nav nav" "aside main"`,
-      }}
-      templateColumns={{
+      } }
+      templateColumns={ {
         base: '1fr',
         md: '200px 1fr',
-      }}
+      } }
     >
       <GridItem area="nav">
         <NavBar
-          onSearch={searchText =>
-            setSelectedProperty({ ...selectedProperty, searchText })
+          onSearch={ searchText =>
+            setSelectedProperty( { ...selectedProperty, searchText } )
           }
         />
       </GridItem>
       <Show above="md">
-        <GridItem paddingX={2} area="aside">
+        <GridItem paddingX={ 2 } area="aside">
           <GenreList
-            selectedGenre={selectedProperty.selectedGenre}
-            onSelectedGenre={property =>
-              setSelectedProperty({
+            selectedGenreId={ selectedProperty.selectedGenreId }
+            onSelectedGenreId={ id =>
+              setSelectedProperty( {
                 ...selectedProperty,
-                selectedGenre: property,
-              })
+                selectedGenreId: id,
+              } )
             }
           />
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Box pl={2.5}>
-          <GameHeading property={selectedProperty} />
-          <Flex mb={5}>
-            <Box mr={5}>
+        <Box pl={ 2.5 }>
+          <GameHeading property={ selectedProperty } />
+          <Flex mb={ 5 }>
+            <Box mr={ 5 }>
               <PlatformSelected
-                selectedPlatform={selectedProperty.selectedPlatform}
-                onSelectedPlatform={property =>
-                  setSelectedProperty({
+                selectedPlatformId={ selectedProperty.selectedPlatformId }
+                onSelectedPlatformId={ id =>
+                  setSelectedProperty( {
                     ...selectedProperty,
-                    selectedPlatform: property,
-                  })
+                    selectedPlatformId: id,
+                  } )
                 }
               />
             </Box>
             <SortSelector
-              selectedSort={selectedProperty.selectedSort}
-              onSelectedSort={property =>
-                setSelectedProperty({
+              selectedSort={ selectedProperty.selectedSort }
+              onSelectedSort={ property =>
+                setSelectedProperty( {
                   ...selectedProperty,
                   selectedSort: property,
-                })
+                } )
               }
             />
           </Flex>
         </Box>
-        <GameGrid selectedProperty={selectedProperty} />
+        <GameGrid selectedProperty={ selectedProperty } />
       </GridItem>
     </Grid>
   );

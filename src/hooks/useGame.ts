@@ -3,6 +3,7 @@ import { FetchResponse } from '../services/api-client';
 import { Property } from '../App';
 import { Platform } from './usePlatforms';
 import gamesService from '../services/gamesService';
+import ms from 'ms';
 
 export interface Game {
   id: number;
@@ -30,5 +31,6 @@ const useGame = (selectedProperty: Property) =>
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;
     },
+    staleTime: ms('24h'),
   });
 export default useGame;

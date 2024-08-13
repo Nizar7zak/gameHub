@@ -8,8 +8,8 @@ import SortSelector from './components/SortSelector';
 import GameHeading from './components/GameHeading';
 
 export interface Property {
-  selectedGenreId: number | undefined;
-  selectedPlatformId: number | undefined;
+  selectedGenreId?: number;
+  selectedPlatformId?: number ;
   selectedSort: string;
   searchText: string;
 }

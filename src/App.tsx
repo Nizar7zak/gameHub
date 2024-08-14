@@ -2,22 +2,11 @@ import { Box, Flex, Grid, GridItem, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import GenreList from './components/GenreList';
-import { useState } from 'react';
 import PlatformSelected from './components/PlatformSelected';
 import SortSelector from './components/SortSelector';
 import GameHeading from './components/GameHeading';
 
-export interface Property {
-  selectedGenreId?: number;
-  selectedPlatformId?: number;
-  selectedSort: string;
-  searchText: string;
-}
-
 function App() {
-  const [selectedProperty, setSelectedProperty] = useState<Property>(
-    {} as Property
-  );
   return (
     <Grid
       templateAreas={{

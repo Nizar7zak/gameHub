@@ -1,5 +1,11 @@
 import { create } from 'zustand';
-import { Property } from './App';
+
+export interface Property {
+  selectedGenreId?: number;
+  selectedPlatformId?: number;
+  selectedSort: string;
+  searchText: string;
+}
 
 interface GameStore {
   property: Property;

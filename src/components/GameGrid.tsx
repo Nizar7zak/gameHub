@@ -2,15 +2,12 @@ import { SimpleGrid, Spinner, Text } from '@chakra-ui/react';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
-import { Property } from '../App';
 import useGame from '../hooks/useGame';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import useGameStore from '../store';
 
-interface Props {
-  selectedProperty: Property;
-}
-
-const GameGrid = ({ selectedProperty }: Props) => {
+const GameGrid = () => {
+  const { property: selectedProperty } = useGameStore();
   const { data, error, isLoading, fetchNextPage, hasNextPage } =
     useGame(selectedProperty);
   const skeletons = [1, 2, 3, 4, 5, 6];

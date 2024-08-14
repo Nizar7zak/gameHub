@@ -1,11 +1,12 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { BsChevronBarDown } from 'react-icons/bs';
+import useGameStore from '../store';
 
-interface Props {
-  selectedSort: string;
-  onSelectedSort: (property: string) => void;
-}
-const SortSelector = ({ selectedSort, onSelectedSort }: Props) => {
+const SortSelector = () => {
+  const {
+    property: { selectedSort },
+    onSelectedSort,
+  } = useGameStore();
   const sortOrders = [
     { value: '', label: 'Relevance' },
     { value: '-added', label: 'Date added' },

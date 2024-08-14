@@ -8,14 +8,14 @@ import {
 } from '@chakra-ui/react';
 import useGenres from '../hooks/useGenres';
 import getCroppedImageURL from '../services/image-url';
+import useGameStore from '../store';
 
-interface Props {
-  selectedGenreId?: number;
-  onSelectedGenreId: (id: number) => void;
-}
-
-const GenreList = ({ selectedGenreId, onSelectedGenreId }: Props) => {
+const GenreList = () => {
   const { data } = useGenres();
+  const {
+    property: { selectedGenreId },
+    onSelectedGenreId,
+  } = useGameStore();
   return (
     <>
       <Heading fontSize="2xl" mb={3}>

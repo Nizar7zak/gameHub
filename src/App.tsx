@@ -30,52 +30,24 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar
-          onSearch={searchText =>
-            setSelectedProperty({ ...selectedProperty, searchText })
-          }
-        />
+        <NavBar />
       </GridItem>
       <Show above="md">
         <GridItem paddingX={2} area="aside">
-          <GenreList
-            selectedGenreId={selectedProperty.selectedGenreId}
-            onSelectedGenreId={id =>
-              setSelectedProperty({
-                ...selectedProperty,
-                selectedGenreId: id,
-              })
-            }
-          />
+          <GenreList />
         </GridItem>
       </Show>
       <GridItem area="main">
         <Box pl={2.5}>
-          <GameHeading property={selectedProperty} />
+          <GameHeading />
           <Flex mb={5}>
             <Box mr={5}>
-              <PlatformSelected
-                selectedPlatformId={selectedProperty.selectedPlatformId}
-                onSelectedPlatformId={id =>
-                  setSelectedProperty({
-                    ...selectedProperty,
-                    selectedPlatformId: id,
-                  })
-                }
-              />
+              <PlatformSelected />
             </Box>
-            <SortSelector
-              selectedSort={selectedProperty.selectedSort}
-              onSelectedSort={property =>
-                setSelectedProperty({
-                  ...selectedProperty,
-                  selectedSort: property,
-                })
-              }
-            />
+            <SortSelector />
           </Flex>
         </Box>
-        <GameGrid selectedProperty={selectedProperty} />
+        <GameGrid />
       </GridItem>
     </Grid>
   );

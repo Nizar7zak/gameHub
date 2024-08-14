@@ -6,10 +6,8 @@ import useGameStore from '../store';
 
 const PlatformSelected = () => {
   const { data, error } = usePlatforms();
-  const {
-    property: { selectedPlatformId },
-    onSelectedPlatformId,
-  } = useGameStore();
+  const selectedPlatformId = useGameStore(s => s.property.selectedPlatformId);
+  const onSelectedPlatformId = useGameStore(s => s.onSelectedPlatformId);
   if (error) return null;
 
   const selectedPlatformName = usePlatform(selectedPlatformId);

@@ -12,10 +12,8 @@ import useGameStore from '../store';
 
 const GenreList = () => {
   const { data } = useGenres();
-  const {
-    property: { selectedGenreId },
-    onSelectedGenreId,
-  } = useGameStore();
+  const selectedGenreId = useGameStore(s => s.property.selectedGenreId);
+  const onSelectedGenreId = useGameStore(s => s.onSelectedGenreId);
   return (
     <>
       <Heading fontSize="2xl" mb={3}>

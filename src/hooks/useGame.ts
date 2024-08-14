@@ -3,7 +3,7 @@ import { FetchResponse } from '../services/api-client';
 import { Platform } from './usePlatforms';
 import gamesService from '../services/gamesService';
 import ms from 'ms';
-import { Property } from '../store';
+import useGameStore from '../store';
 
 export interface Game {
   id: number;
@@ -14,8 +14,10 @@ export interface Game {
   rating_top: number;
 }
 
-const useGame = (selectedProperty: Property) =>
-  useInfiniteQuery<FetchResponse<Game>, Error>({
+const useGame = () => {
+  const selectedProperty = useGameStore(s => s.property);
+
+  return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ['games', selectedProperty],
     queryFn: ({ pageParam = 1 }) =>
       gamesService.getAll({
@@ -33,4 +35,6 @@ const useGame = (selectedProperty: Property) =>
     },
     staleTime: ms('24h'),
   });
+};
+
 export default useGame;

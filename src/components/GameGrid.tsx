@@ -4,12 +4,9 @@ import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
 import useGame from '../hooks/useGame';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import useGameStore from '../store';
 
 const GameGrid = () => {
-  const { property: selectedProperty } = useGameStore();
-  const { data, error, isLoading, fetchNextPage, hasNextPage } =
-    useGame(selectedProperty);
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGame();
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   const count =

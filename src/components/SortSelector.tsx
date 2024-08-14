@@ -3,10 +3,8 @@ import { BsChevronBarDown } from 'react-icons/bs';
 import useGameStore from '../store';
 
 const SortSelector = () => {
-  const {
-    property: { selectedSort },
-    onSelectedSort,
-  } = useGameStore();
+  const selectedSort = useGameStore(s => s.property.selectedSort);
+  const onSelectedSort = useGameStore(s => s.onSelectedSort);
   const sortOrders = [
     { value: '', label: 'Relevance' },
     { value: '-added', label: 'Date added' },

@@ -2,11 +2,11 @@ import { Button, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 
 interface Props {
-  text?: string;
-  maxChar?: number;
+  text: string;
+  maxChar: number;
 }
 
-const ExpandableText = ({ text = '', maxChar = 0 }: Props) => {
+const ExpandableText = ({ text, maxChar }: Props) => {
   const [expanded, setExpanded] = useState(false);
 
   const summarizeText = (

@@ -1,4 +1,4 @@
-export interface GameScreenShots {
+export default interface GameScreenShots {
   id: number;
   image: string;
   hidden: boolean;

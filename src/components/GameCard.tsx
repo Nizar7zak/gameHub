@@ -3,7 +3,7 @@ import PlatformIconList from './PlatformIconList';
 import CriticScore from './CriticScore';
 import getCroppedImageURL from '../services/image-url';
 import Emoji from './Emoji';
-import { Game } from '../entities/Game';
+import Game from '../entities/Game';
 
 interface Props {
   game: Game;

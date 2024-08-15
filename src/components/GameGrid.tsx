@@ -4,7 +4,7 @@ import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
 import useGames from '../hooks/useGames';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const GameGrid = () => {
   const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
@@ -34,9 +34,9 @@ const GameGrid = () => {
         {data?.pages.map(page =>
           page.results.map(game => (
             <GameCardContainer key={game.id}>
-              <NavLink to={`/games/${game.slug}`}>
+              <Link to={`/games/${game.slug}`}>
                 <GameCard game={game} />
-              </NavLink>
+              </Link>
             </GameCardContainer>
           ))
         )}

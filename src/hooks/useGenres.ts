@@ -3,7 +3,7 @@ import { FetchResponse } from '../services/api-client';
 import genresService from '../services/genresService';
 import genres from '../data/genres';
 import ms from 'ms';
-import { Genre } from '../entities/Genre';
+import Genre from '../entities/Genre';
 
 const useGenres = () => {
   const { data, error, isLoading } = useQuery<FetchResponse<Genre>, Error>({

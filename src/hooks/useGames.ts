@@ -3,7 +3,7 @@ import { FetchResponse } from '../services/api-client';
 import gamesService from '../services/gamesService';
 import ms from 'ms';
 import useGameStore from '../store';
-import { Game } from '../entities/Game';
+import Game from '../entities/Game';
 
 const useGames = () => {
   const selectedProperty = useGameStore(s => s.property);

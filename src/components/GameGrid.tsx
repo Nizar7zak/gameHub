@@ -2,12 +2,12 @@ import { SimpleGrid, Spinner, Text } from '@chakra-ui/react';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
-import useGame from '../hooks/useGame';
+import useGames from '../hooks/useGames';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { NavLink } from 'react-router-dom';
 
 const GameGrid = () => {
-  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGame();
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   const count =
@@ -34,7 +34,7 @@ const GameGrid = () => {
         {data?.pages.map(page =>
           page.results.map(game => (
             <GameCardContainer key={game.id}>
-              <NavLink to={`/games/${game.id}`}>
+              <NavLink to={`/games/${game.slug}`}>
                 <GameCard game={game} />
               </NavLink>
             </GameCardContainer>

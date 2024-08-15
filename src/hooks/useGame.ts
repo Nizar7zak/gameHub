@@ -1,40 +1,15 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { FetchResponse } from '../services/api-client';
-import { Platform } from './usePlatforms';
-import gamesService from '../services/gamesService';
+import { useQuery } from '@tanstack/react-query';
 import ms from 'ms';
-import useGameStore from '../store';
+import { Game } from './useGames';
+import gameService from '../services/gameService';
 
-export interface Game {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-  rating_top: number;
-}
-
-const useGame = () => {
-  const selectedProperty = useGameStore(s => s.property);
-
-  return useInfiniteQuery<FetchResponse<Game>, Error>({
-    queryKey: ['games', selectedProperty],
-    queryFn: ({ pageParam = 1 }) =>
-      gamesService.getAll({
-        params: {
-          genres: selectedProperty.selectedGenreId,
-          parent_platforms: selectedProperty.selectedPlatformId,
-          ordering: selectedProperty.selectedSort,
-          search: selectedProperty.searchText,
-          page_size: 12,
-          page: pageParam,
-        },
-      }),
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage.next ? allPages.length + 1 : undefined;
-    },
+const useGame = (slug?: string) => {
+  const { data, error, isLoading } = useQuery<Game, Error>({
+    queryKey: ['game', slug],
+    queryFn: () => gameService.get(slug),
     staleTime: ms('24h'),
   });
+  return { data, error, isLoading };
 };
 
 export default useGame;

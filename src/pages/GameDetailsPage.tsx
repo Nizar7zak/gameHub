@@ -1,10 +1,8 @@
-import { useParams } from "react-router-dom"
+import { useParams } from 'react-router-dom';
 
 const GameDetailsPage = () => {
-    const params = useParams()
-    return (
-        <div>GamePage{ params.id }</div>
-    )
-}
+  const params = useParams();
+  return <div>GamePage{params.id}</div>;
+};
 
-export default GameDetailsPage
+export default GameDetailsPage;

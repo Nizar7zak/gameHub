@@ -1,20 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { FetchResponse } from '../services/api-client';
-import { Platform } from './usePlatforms';
 import gamesService from '../services/gamesService';
 import ms from 'ms';
 import useGameStore from '../store';
-
-export interface Game {
-  id: number;
-  name: string;
-  slug: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-  rating_top: number;
-  description_raw: string;
-}
+import { Game } from '../entities/Game';
 
 const useGames = () => {
   const selectedProperty = useGameStore(s => s.property);

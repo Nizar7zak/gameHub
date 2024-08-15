@@ -3,19 +3,15 @@ import { FetchResponse } from '../services/api-client';
 import platformsService from '../services/platformsService';
 import platforms from '../data/platforms';
 import ms from 'ms';
+import { Platform } from '../entities/Platform';
 
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
 const usePlatforms = () => {
-  const { data, error } = useQuery<FetchResponse<Platform>, Error>({
-    queryKey: ['platforms'],
+  const { data, error } = useQuery<FetchResponse<Platform>, Error>( {
+    queryKey: [ 'platforms' ],
     queryFn: platformsService.getAll,
-    staleTime: ms('24h'),
+    staleTime: ms( '24h' ),
     initialData: platforms,
-  });
+  } );
   return { data, error };
 };
 

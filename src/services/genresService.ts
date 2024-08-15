@@ -1,4 +1,4 @@
-import { Genre } from '../hooks/useGenres';
+import { Genre } from '../entities/Genre';
 import APIClient from './api-client';
 
 const genresService = new APIClient<Genre>('/genres');
